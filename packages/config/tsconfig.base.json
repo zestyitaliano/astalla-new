@@ -1,0 +1,43 @@
+{
+    "compilerOptions": {
+        "target": "es2018",
+        "lib": [
+            "dom",
+            "dom.iterable",
+            "esnext"
+        ],
+        "allowJs": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "noEmit": true,
+        "esModuleInterop": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "jsx": "preserve",
+        "incremental": true,
+        "baseUrl": ".",
+        "paths": {
+            "@astalla/ui": [
+                "../../packages/ui/src/index.tsx"
+            ],
+            "@astalla/ui/*": [
+                "../../packages/ui/src/*"
+            ],
+            "@astalla/config/*": [
+                "../../packages/config/*"
+            ],
+            "@astalla/types": [
+                "../../packages/types/index.ts"
+            ],
+            "@astalla/types/*": [
+                "../../packages/types/*"
+            ]
+        }
+    },
+    "exclude": [
+        "node_modules"
+    ]
+}

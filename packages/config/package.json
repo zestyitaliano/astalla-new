@@ -1,0 +1,12 @@
+{
+    "name": "@astalla/config",
+    "version": "0.0.1",
+    "main": "index.js",
+    "license": "MIT",
+    "dependencies": {
+        "tailwindcss": "^3.0.0",
+        "eslint": "^8.0.0",
+        "eslint-config-next": "latest",
+        "typescript": "^5.0.0"
+    }
+}
