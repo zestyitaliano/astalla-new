@@ -8,10 +8,10 @@ export interface ShellProps {
 
 export function Shell({ children, sidebar, header }: ShellProps) {
     return (
-        <div className="flex min-h-screen bg-zinc-50 dark:bg-zinc-950">
+        <div className="flex min-h-screen bg-[#F7F8FA] dark:bg-zinc-950 transition-colors duration-200">
             {/* Sidebar */}
             {sidebar && (
-                <aside className="w-64 flex-shrink-0 border-r border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hidden md:block">
+                <aside className="w-64 flex-shrink-0 bg-white dark:bg-zinc-900 border-r border-zinc-100 dark:border-zinc-800 hidden md:block z-20">
                     <div className="h-full px-4 py-6">{sidebar}</div>
                 </aside>
             )}
@@ -19,11 +19,11 @@ export function Shell({ children, sidebar, header }: ShellProps) {
             {/* Main Content */}
             <div className="flex-1 flex flex-col min-w-0">
                 {header && (
-                    <header className="h-16 flex-shrink-0 border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/80 backdrop-blur-sm px-6 flex items-center justify-between sticky top-0 z-10">
+                    <header className="h-16 flex-shrink-0 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md border-b border-zinc-100 dark:border-zinc-800 px-8 flex items-center justify-between sticky top-0 z-10 transition-all">
                         {header}
                     </header>
                 )}
-                <main className="flex-1 p-6 overflow-auto">{children}</main>
+                <main className="flex-1 p-8 overflow-auto">{children}</main>
             </div>
         </div>
     );

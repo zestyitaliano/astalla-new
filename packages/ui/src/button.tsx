@@ -9,9 +9,9 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         return (
             <button
                 ref={ref}
-                className={`px-4 py-2 rounded-md font-medium transition-colors ${variant === "primary"
-                        ? "bg-brand-600 text-white hover:bg-brand-700"
-                        : "bg-brand-100 text-brand-900 hover:bg-brand-200"
+                className={`inline-flex items-center justify-center px-4 py-2 rounded-full font-medium transition-all duration-200 active:scale-95 ${variant === "primary"
+                    ? "bg-brand-600 text-white shadow-[0_4px_12px_rgba(var(--color-brand-600),0.3)] hover:bg-brand-700 hover:-translate-y-0.5"
+                    : "bg-white text-zinc-700 border border-zinc-200 shadow-sm hover:bg-zinc-50 hover:text-zinc-900"
                     } ${className}`}
                 {...props}
             >
