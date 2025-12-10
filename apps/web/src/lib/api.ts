@@ -1,6 +1,6 @@
 import { collection, getDocs, doc, getDoc } from "firebase/firestore";
 import { db } from "./firebase";
-import { COLLECTIONS, Amenity, GalleryItem, NeighborhoodLocation, SiteSettings, HomepageData } from "@astalla/types";
+import { COLLECTIONS, Amenity, GalleryItem, NeighborhoodLocation, SiteSettings, HomepageData, ContactInfo } from "@astalla/types";
 import { DOC_IDS } from "./constants";
 
 export async function getSiteSettings(): Promise<SiteSettings | null> {
@@ -58,5 +58,19 @@ export async function getNeighborhood(): Promise<NeighborhoodLocation[]> {
     } catch (error) {
         console.error("Error fetching neighborhood:", error);
         return [];
+    }
+}
+
+export async function getContact(): Promise<ContactInfo | null> {
+    try {
+        const docRef = doc(db, COLLECTIONS.CONTACT, DOC_IDS.CONTACT);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+            return { id: docSnap.id, ...docSnap.data() } as ContactInfo;
+        }
+        return null;
+    } catch (error) {
+        console.error("Error fetching contact:", error);
+        return null;
     }
 }
