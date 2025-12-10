@@ -36,27 +36,7 @@ export default function DashboardPage() {
     return (
         <Shell
             header={<DashboardHeader />}
-            sidebar={
-                <nav className="space-y-1">
-                    <div className="px-3 mb-6 mt-2">
-                        <div className="flex items-center gap-2 font-bold text-xl tracking-tight text-zinc-900 dark:text-zinc-100">
-                            <div className="w-6 h-6 rounded-md bg-brand-600 flex items-center justify-center text-white text-xs">A</div>
-                            Astalla
-                        </div>
-                    </div>
-                    <div className="px-3 mb-2 text-xs font-semibold text-zinc-400 uppercase tracking-wider">Content</div>
-                    {Object.entries(COLLECTIONS).map(([key, value]) => (
-                        <a
-                            key={key}
-                            href={`/dashboard/${value}`}
-                            className="group flex items-center px-3 py-2 text-sm font-medium rounded-lg text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-zinc-100 transition-all duration-200"
-                        >
-                            <span className="w-1.5 h-1.5 rounded-full bg-zinc-300 dark:bg-zinc-600 mr-3 group-hover:bg-brand-500 transition-colors"></span>
-                            {key.replace("_", " ")}
-                        </a>
-                    ))}
-                </nav>
-            }
+            sidebar={<DashboardSidebar />}
         >
             <div className="space-y-6">
                 {/* Stats Grid */}

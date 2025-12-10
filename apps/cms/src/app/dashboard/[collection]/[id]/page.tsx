@@ -9,6 +9,8 @@ import { CollectionForm } from "@/components/collection-form";
 import { Shell, Card } from "@astalla/ui";
 import { COLLECTIONS } from "@astalla/types";
 import { useAuth } from "@/context/auth-context";
+import { DashboardSidebar } from "@/components/dashboard/sidebar";
+import { DashboardHeader } from "@/components/dashboard/header";
 
 export default function CollectionEditPage({ params }: { params: { collection: string; id: string } }) {
     const { collection: collectionParam, id } = params;
@@ -95,30 +97,19 @@ export default function CollectionEditPage({ params }: { params: { collection: s
         );
     }
 
+    import { DashboardSidebar } from "@/components/dashboard/sidebar";
+    import { DashboardHeader } from "@/components/dashboard/header";
+
+    // ...
+
     return (
         <Shell
-            header={
-                <div className="flex items-center justify-between w-full">
-                    <h1 className="text-xl font-bold">{isNew ? `New ${definition.label}` : `Edit ${definition.label}`}</h1>
-                </div>
-            }
-            sidebar={
-                <nav className="space-y-1">
-                    {Object.entries(COLLECTIONS).map(([key, value]) => (
-                        <a
-                            key={key}
-                            href={`/dashboard/${value}`}
-                            className={`block px-3 py-2 text-sm font-medium rounded-md ${value === collectionParam
-                                ? "bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100"
-                                : "text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800"
-                                }`}
-                        >
-                            {key.replace("_", " ")}
-                        </a>
-                    ))}
-                </nav>
-            }
+            header={<DashboardHeader />}
+            sidebar={<DashboardSidebar activeCollection={collectionParam} />}
         >
+            <div className="mb-6">
+                <h1 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">{isNew ? `New ${definition.label}` : `Edit ${definition.label}`}</h1>
+            </div>
             <Card>
                 {loading ? (
                     <div className="p-4 text-center">Loading...</div>

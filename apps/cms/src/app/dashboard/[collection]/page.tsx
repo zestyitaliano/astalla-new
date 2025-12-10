@@ -9,6 +9,8 @@ import { CollectionTable } from "@/components/collection-table";
 import { Shell, Button, Card } from "@astalla/ui";
 import { COLLECTIONS } from "@astalla/types";
 import { useAuth } from "@/context/auth-context";
+import { DashboardSidebar } from "@/components/dashboard/sidebar";
+import { DashboardHeader } from "@/components/dashboard/header";
 
 export default function CollectionListPage({ params }: { params: { collection: string } }) {
     const { collection: collectionParam } = params;
@@ -79,32 +81,19 @@ export default function CollectionListPage({ params }: { params: { collection: s
 
     return (
         <Shell
-            header={
-                <div className="flex items-center justify-between w-full">
-                    <h1 className="text-xl font-bold">{definition.label}</h1>
-                    <Button onClick={() => router.push(`/dashboard/${collectionParam}/new`)}>
-                        Add New
-                    </Button>
-                </div>
-            }
-            sidebar={
-                <nav className="space-y-1">
-                    {Object.entries(COLLECTIONS).map(([key, value]) => (
-                        <a
-                            key={key}
-                            href={`/dashboard/${value}`}
-                            className={`block px-3 py-2 text-sm font-medium rounded-md ${value === collectionParam
-                                ? "bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100"
-                                : "text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800"
-                                }`}
-                        >
-                            {key.replace("_", " ")}
-                        </a>
-                    ))}
-                </nav>
-            }
+            header={<DashboardHeader />}
+            sidebar={<DashboardSidebar activeCollection={collectionParam} />}
         >
-            <Card>
+            <div className="mb-6 flex items-center justify-between">
+                <div>
+                    <h1 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">{definition.label}</h1>
+                    <p className="text-sm text-zinc-500">Manage your {definition.label.toLowerCase()} collection</p>
+                </div>
+                <Button onClick={() => router.push(`/dashboard/${collectionParam}/new`)}>
+                    Add New
+                </Button>
+            </div>
+            <Card className="overflow-hidden">
                 {loading ? (
                     <div className="p-4 text-center">Loading...</div>
                 ) : (
