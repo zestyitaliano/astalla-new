@@ -2,6 +2,8 @@ import * as React from "react";
 import { CollectionDefinition } from "@/config/schema";
 import { Button, Input } from "@astalla/ui";
 import { useRouter } from "next/navigation";
+import { ImageUpload } from "./image-upload";
+import { RichTextEditor } from "./rich-text-editor";
 
 interface CollectionFormProps {
     initialData?: any;
@@ -40,6 +42,22 @@ export function CollectionForm({
                                 value={formData[field.name] || ""}
                                 onChange={(e) => handleChange(field.name, e.target.value)}
                                 required={field.required}
+                            />
+                        </div>
+                    ) : field.type === "rich-text" ? (
+                        <RichTextEditor
+                            label={field.label}
+                            value={formData[field.name] || ""}
+                            onChange={(e) => handleChange(field.name, e.target.value)}
+                            required={field.required}
+                        />
+                    ) : field.type === "image" ? (
+                        <div className="w-full">
+                            <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1.5">{field.label}</label>
+                            <ImageUpload
+                                value={formData[field.name] || ""}
+                                onChange={(val) => handleChange(field.name, val)}
+                                disabled={isSubmitting}
                             />
                         </div>
                     ) : field.type === "select" ? (

@@ -1,0 +1,52 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper function to check if user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Site Settings: Public Read, Auth Write
+    match /site_settings/{document} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+
+    // Pages: Public Read, Auth Write
+    match /pages/{document} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+
+    // Amenities: Public Read, Auth Write
+    match /amenities/{document} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+
+    // Gallery: Public Read, Auth Write
+    match /gallery/{document} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+
+    // Neighborhood: Public Read, Auth Write
+    match /neighborhood/{document} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+
+    // Contact: Public Read, Auth Write
+    match /contact/{document} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

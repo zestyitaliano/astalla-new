@@ -13,14 +13,20 @@ import { useAuth } from "@/context/auth-context";
 export default function CollectionListPage({ params }: { params: Promise<{ collection: string }> }) {
     const { collection: collectionParam } = use(params);
     const router = useRouter();
-    const { user } = useAuth();
+    const { user, loading: authLoading } = useAuth();
     const [data, setData] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
 
     const definition = SCHEMA[collectionParam];
 
     useEffect(() => {
-        if (!definition) return;
+        if (!authLoading && !user) {
+            router.push("/login");
+        }
+    }, [user, authLoading, router]);
+
+    useEffect(() => {
+        if (!definition || !user) return;
 
         const fetchData = async () => {
             try {
@@ -38,7 +44,7 @@ export default function CollectionListPage({ params }: { params: Promise<{ colle
         };
 
         fetchData();
-    }, [collectionParam, definition]);
+    }, [collectionParam, definition, user]);
 
     const handleDelete = async (item: any) => {
         if (!confirm("Are you sure you want to delete this item?")) return;
@@ -50,6 +56,18 @@ export default function CollectionListPage({ params }: { params: Promise<{ colle
             alert("Failed to delete item.");
         }
     };
+
+    if (authLoading) {
+        return (
+            <div className="flex items-center justify-center min-h-screen">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
+            </div>
+        );
+    }
+
+    if (!user) {
+        return null; // Will redirect
+    }
 
     if (!definition) {
         return (
@@ -76,8 +94,8 @@ export default function CollectionListPage({ params }: { params: Promise<{ colle
                             key={key}
                             href={`/dashboard/${value}`}
                             className={`block px-3 py-2 text-sm font-medium rounded-md ${value === collectionParam
-                                    ? "bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100"
-                                    : "text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800"
+                                ? "bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100"
+                                : "text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800"
                                 }`}
                         >
                             {key.replace("_", " ")}

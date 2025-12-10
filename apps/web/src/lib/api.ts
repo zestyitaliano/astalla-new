@@ -1,6 +1,38 @@
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, doc, getDoc } from "firebase/firestore";
 import { db } from "./firebase";
-import { COLLECTIONS, Amenity, GalleryItem, NeighborhoodLocation } from "@astalla/types";
+import { COLLECTIONS, Amenity, GalleryItem, NeighborhoodLocation, SiteSettings, HomepageData } from "@astalla/types";
+
+export async function getSiteSettings(): Promise<SiteSettings | null> {
+    try {
+        // Site settings is a singleton, but stored as a document in a collection or a specific doc.
+        // For MVP, assuming it's a doc with ID 'main' or similar in 'site_settings' collection?
+        // Or it could be a single document. Let's assume collection 'site_settings' exists and we take the first doc or a known ID.
+        // Let's use a known ID 'default' for simplicity in this MVP.
+        const docRef = doc(db, COLLECTIONS.SITE_SETTINGS, "default");
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+            return { id: docSnap.id, ...docSnap.data() } as SiteSettings;
+        }
+        return null;
+    } catch (error) {
+        console.error("Error fetching site settings:", error);
+        return null;
+    }
+}
+
+export async function getHomePage(): Promise<HomepageData | null> {
+    try {
+        const docRef = doc(db, COLLECTIONS.PAGES, "home");
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+            return { id: docSnap.id, ...docSnap.data() } as HomepageData;
+        }
+        return null;
+    } catch (error) {
+        console.error("Error fetching homepage data:", error);
+        return null;
+    }
+}
 
 export async function getAmenities(): Promise<Amenity[]> {
     try {

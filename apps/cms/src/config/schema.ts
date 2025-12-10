@@ -1,6 +1,6 @@
 import { COLLECTIONS } from "@astalla/types";
 
-export type FieldType = "text" | "textarea" | "image" | "select" | "number";
+export type FieldType = "text" | "textarea" | "image" | "select" | "number" | "rich-text";
 
 export interface FieldDefinition {
     name: string;
@@ -22,16 +22,16 @@ export const SCHEMA: Record<string, CollectionDefinition> = {
         label: "Amenities",
         fields: [
             { name: "title", label: "Title", type: "text", required: true },
-            { name: "description", label: "Description", type: "textarea", required: true },
+            { name: "description", label: "Description", type: "rich-text", required: true },
             { name: "icon", label: "Icon Link (or SVG Name)", type: "text", required: false },
-            { name: "image", label: "Image URL", type: "text", required: false },
+            { name: "image", label: "Image", type: "image", required: false },
         ],
     },
     [COLLECTIONS.GALLERY]: {
         id: COLLECTIONS.GALLERY,
         label: "Gallery",
         fields: [
-            { name: "url", label: "Image URL", type: "text", required: true },
+            { name: "url", label: "Image", type: "image", required: true },
             { name: "caption", label: "Caption", type: "text", required: false },
             {
                 name: "category",
@@ -47,7 +47,7 @@ export const SCHEMA: Record<string, CollectionDefinition> = {
         label: "Neighborhood",
         fields: [
             { name: "name", label: "Name", type: "text", required: true },
-            { name: "description", label: "Description", type: "textarea", required: false },
+            { name: "description", label: "Description", type: "rich-text", required: false },
             {
                 name: "category",
                 label: "Category",
