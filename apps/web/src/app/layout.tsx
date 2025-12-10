@@ -42,7 +42,7 @@ export default async function RootLayout({
         className={`${playfair.variable} ${jakarta.variable} antialiased min-h-screen flex flex-col bg-[#F7F5F2] text-zinc-900 font-sans selection:bg-brand-200 selection:text-brand-900`}
         style={themeStyles}
       >
-        <Navbar siteName={settings?.name} logoUrl={settings?.logoUrl} />
+        <Navbar siteName={settings?.name} logoUrl={settings?.logoUrl} navLinks={settings?.navLinks} />
         <main className="flex-1">{children}</main>
         <Footer />
       </body>

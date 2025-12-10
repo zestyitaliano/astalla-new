@@ -37,8 +37,8 @@ export function DashboardSidebar({ activeCollection }: DashboardSidebarProps) {
                         key={key}
                         href={`/dashboard/${value}`}
                         className={`group flex items-center px-3 py-2.5 text-sm font-medium rounded-xl transition-all duration-200 ${isActive
-                                ? "bg-brand-50 text-brand-900 dark:bg-brand-900/20 dark:text-brand-100"
-                                : "text-zinc-600 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-zinc-100 hover:translate-x-0.5"
+                            ? "bg-brand-50 text-brand-900 dark:bg-brand-900/20 dark:text-brand-100"
+                            : "text-zinc-600 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-zinc-100 hover:translate-x-0.5"
                             }`}
                     >
                         <Icon

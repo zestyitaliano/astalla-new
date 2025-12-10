@@ -100,3 +100,9 @@ export const COLLECTIONS = {
     NEIGHBORHOOD: 'neighborhood',
     CONTACT: 'contact',
 } as const;
+
+export const DOC_IDS = {
+    SITE_SETTINGS: 'default',
+    HOME_PAGE: 'home',
+    CONTACT: 'contact',
+} as const;

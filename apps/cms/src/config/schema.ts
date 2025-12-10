@@ -57,4 +57,14 @@ export const SCHEMA: Record<string, CollectionDefinition> = {
             },
         ],
     },
+    [COLLECTIONS.CONTACT]: {
+        id: COLLECTIONS.CONTACT,
+        label: "Contact",
+        fields: [
+            { name: "email", label: "Email", type: "text", required: true },
+            { name: "phone", label: "Phone", type: "text", required: true },
+            { name: "address", label: "Address", type: "textarea", required: true },
+            { name: "officeHours", label: "Office Hours", type: "textarea", required: true },
+        ],
+    },
 };

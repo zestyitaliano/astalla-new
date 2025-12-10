@@ -8,17 +8,18 @@ import { Button } from "@astalla/ui";
 interface NavbarProps {
     siteName?: string;
     logoUrl?: string;
+    navLinks?: { label: string; url: string }[];
 }
 
-const NAV_LINKS = [
-    { label: "Home", href: "/" },
-    { label: "Amenities", href: "/amenities" },
-    { label: "Gallery", href: "/gallery" },
-    { label: "Neighborhood", href: "/neighborhood" },
-    { label: "Contact", href: "/contact" },
+const DEFAULT_LINKS = [
+    { label: "Home", url: "/" },
+    { label: "Amenities", url: "/amenities" },
+    { label: "Gallery", url: "/gallery" },
+    { label: "Neighborhood", url: "/neighborhood" },
+    { label: "Contact", url: "/contact" },
 ];
 
-export function Navbar({ siteName = "Astalla", logoUrl }: NavbarProps) {
+export function Navbar({ siteName = "Astalla", logoUrl, navLinks = DEFAULT_LINKS }: NavbarProps) {
     const pathname = usePathname();
     const [scrolled, setScrolled] = useState(false);
     const isHome = pathname === "/";
@@ -60,13 +61,13 @@ export function Navbar({ siteName = "Astalla", logoUrl }: NavbarProps) {
                 </Link>
 
                 <div className="hidden md:flex items-center gap-8">
-                    {NAV_LINKS.map((link) => (
+                    {navLinks.map((link) => (
                         <Link
-                            key={link.href}
-                            href={link.href}
-                            className={`text-sm font-sans font-medium tracking-wide uppercase transition-all hover:-translate-y-0.5 ${pathname === link.href
-                                    ? (isTransparent ? "text-white opacity-100 border-b-2 border-white" : "text-brand-600 border-b-2 border-brand-600")
-                                    : (isTransparent ? "text-white/80 hover:text-white hover:opacity-100" : "text-zinc-500 hover:text-brand-600 dark:text-zinc-400 dark:hover:text-white")
+                            key={link.url}
+                            href={link.url}
+                            className={`text-sm font-sans font-medium tracking-wide uppercase transition-all hover:-translate-y-0.5 ${pathname === link.url
+                                ? (isTransparent ? "text-white opacity-100 border-b-2 border-white" : "text-brand-600 border-b-2 border-brand-600")
+                                : (isTransparent ? "text-white/80 hover:text-white hover:opacity-100" : "text-zinc-500 hover:text-brand-600 dark:text-zinc-400 dark:hover:text-white")
                                 }`}
                         >
                             {link.label}
@@ -75,8 +76,8 @@ export function Navbar({ siteName = "Astalla", logoUrl }: NavbarProps) {
                     <Link href="/contact">
                         <Button
                             className={`rounded-none px-6 uppercase text-xs font-bold tracking-widest transition-all ${isTransparent
-                                    ? "bg-white text-zinc-900 hover:bg-zinc-100"
-                                    : "bg-zinc-900 text-white hover:bg-zinc-800"
+                                ? "bg-white text-zinc-900 hover:bg-zinc-100"
+                                : "bg-zinc-900 text-white hover:bg-zinc-800"
                                 }`}
                         >
                             Book Now
