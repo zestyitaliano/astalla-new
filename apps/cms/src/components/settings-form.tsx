@@ -85,7 +85,7 @@ export function SettingsForm() {
 
             <Card title="Brand Colors">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {Object.entries(settings.brandColors).map(([key, value]) => (
+                    {settings.brandColors && Object.entries(settings.brandColors).map(([key, value]) => (
                         <div key={key}>
                             <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1 capitalize">{key}</label>
                             <div className="flex gap-2">

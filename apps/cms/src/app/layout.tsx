@@ -18,6 +18,8 @@ export const metadata: Metadata = {
   description: "Decentralized property management",
 };
 
+import { Toaster } from "react-hot-toast";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -28,7 +30,10 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${outfit.variable} antialiased text-zinc-900 dark:text-zinc-100 bg-zinc-50 dark:bg-zinc-950 font-sans`}
       >
-        <AuthProvider>{children}</AuthProvider>
+        <AuthProvider>
+          {children}
+          <Toaster position="top-right" />
+        </AuthProvider>
       </body>
     </html>
   );
