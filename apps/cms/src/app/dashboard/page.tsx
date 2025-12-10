@@ -1,10 +1,32 @@
 "use client";
 
 import { Shell, Card } from "@astalla/ui";
-import { Link } from "lucide-react"; // Using lucide-react just for icon placeholder if needed, or just text
+import { Link } from "lucide-react";
 import { COLLECTIONS } from "@astalla/types";
+import { useAuth } from "@/context/auth-context";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function DashboardPage() {
+    const { user, loading } = useAuth();
+    const router = useRouter();
+
+    useEffect(() => {
+        if (!loading && !user) {
+            router.push("/login");
+        }
+    }, [user, loading, router]);
+
+    if (loading) {
+        return (
+            <div className="flex items-center justify-center min-h-screen">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
+            </div>
+        );
+    }
+
+    if (!user) return null;
+
     return (
         <Shell
             header={

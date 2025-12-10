@@ -42,7 +42,7 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-50`}
         style={themeStyles}
       >
-        <Navbar />
+        <Navbar siteName={settings?.name} logoUrl={settings?.logoUrl} />
         <main className="flex-1">{children}</main>
         <Footer />
       </body>

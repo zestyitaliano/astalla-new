@@ -66,10 +66,10 @@ Or copy the contents of `firestore.rules` into the Firebase Console -> Firestore
     ```
 2.  Navigate to `http://localhost:3000/login`.
 3.  Sign up/Login (since it's a new project, you might need to enable sign-up in your own tailored auth flow or manually create a user in Firebase Auth console first).
-4.  Go to **Site Settings** in the dashboard and fill in:
+4.  Go to **Site Settings** in the dashboard and create a new item. IMPORTANT: The dashboard might auto-generate IDs, but for the main settings, we expect a specific ID if we are strict. However, the API logic currently looks for ID `default`. Enforce this ID when creating if possible, or update the constant if you create a random ID. For MVP easiest path: manually create doc `site_settings/default` in Firebase Console if the CMS doesn't support setting ID on creation yet.
     - Site Name
     - Brand Colors (Primary, Secondary, Accent)
-5.  Go to **Pages -> Home** and fill in hero details.
+5.  Go to **Pages** and create a doc with ID `home` (or `pages/home` in console) and fill in content.
 
 ## Step 6: Deploy
 

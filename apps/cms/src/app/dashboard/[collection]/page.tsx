@@ -10,8 +10,8 @@ import { Shell, Button, Card } from "@astalla/ui";
 import { COLLECTIONS } from "@astalla/types";
 import { useAuth } from "@/context/auth-context";
 
-export default function CollectionListPage({ params }: { params: Promise<{ collection: string }> }) {
-    const { collection: collectionParam } = use(params);
+export default function CollectionListPage({ params }: { params: { collection: string } }) {
+    const { collection: collectionParam } = params;
     const router = useRouter();
     const { user, loading: authLoading } = useAuth();
     const [data, setData] = useState<any[]>([]);
