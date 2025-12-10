@@ -7,5 +7,8 @@ const config: Config = {
         "./src/**/*.{js,ts,jsx,tsx,mdx}",
         "../../packages/ui/src/**/*.{js,ts,jsx,tsx}",
     ],
+    plugins: [
+        require('@tailwindcss/typography'),
+    ],
 };
 export default config;

@@ -15,7 +15,9 @@
     "@astalla/ui": "*",
     "@astalla/config": "*",
     "@astalla/types": "*",
-    "firebase": "^10.0.0"
+    "firebase": "^10.0.0",
+    "react-markdown": "^9.0.1",
+    "@tailwindcss/typography": "^0.5.10"
   },
   "devDependencies": {
     "typescript": "^5.0.0",

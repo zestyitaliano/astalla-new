@@ -1,5 +1,6 @@
 import { getAmenities } from "@/lib/api";
 import { Card } from "@astalla/ui";
+import { RichText } from "@/components/rich-text";
 
 export const revalidate = 60; // Revalidate every minute
 
@@ -12,9 +13,7 @@ export default async function AmenitiesPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {amenities.map((item) => (
                     <Card key={item.id} title={item.title}>
-                        <p className="text-zinc-600 dark:text-zinc-300">
-                            {item.description}
-                        </p>
+                        <RichText content={item.description} className="text-sm text-zinc-600 dark:text-zinc-300" />
                     </Card>
                 ))}
             </div>
